@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn for safetrace
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/var/www/html/safetrace-backed/
+Environment="PATH=/var/www/html/safetrace-backed/venv/bin"
+ExecStart=/var/www/html/safetrace-backed/venv/bin/gunicorn safetrace.wsgi:application --bind 0.0.0.0:8021 --workers 4 --threads 2
+
+[Install]
+WantedBy=multi-user.target

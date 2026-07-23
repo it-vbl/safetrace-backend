@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn for redis rq
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/var/www/html/safetrace-backend
+Environment="PATH=/var/www/html/safetrace-backend/venv/bin"
+ExecStart=/var/www/html/safetrace-backend/venv/bin/python manage.py rqworker default --worker-class rq.SimpleWorker
+
+[Install]
+WantedBy=multi-user.target

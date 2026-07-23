@@ -1,0 +1,55 @@
+.DS_Store
+*/CACHE/*
+static
+build/*
+*.pyc
+*.pyo
+*.so
+*~
+*.db
+local_settings.py
+*.jpg.*
+*.tmproj
+*.sqlite
+env/*
+logs/*
+tmp/*
+.cache
+medias/*
+
+*.sqlite3
+db.*
+projects/logs/*
+bot.session
+*.rdb
+
+# IDE Setting
+.vscode/*
+.idea/*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+env/
+venv/
+venv_old/
+ENV/
+env.bak/
+venv.bak/
+
+#project
+**.ipynb
+
+#webpack
+_keenthemes/tools/node_modules/
+
+# Google service account credentials
+gee_service_account_buatin.json

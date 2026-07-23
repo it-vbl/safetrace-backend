@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet + PIPPIB MENLHK + Layer Control</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <style>
+        #map { height: 90vh; }
+        .controls {
+            padding: 10px;
+            background: white;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <div class="controls">
+        <label><input type="checkbox" id="toggleLayer" checked /> Tampilkan PIPPIB</label><br/>
+        <label>Opacity: <input type="range" id="opacitySlider" min="0" max="1" step="0.1" value="0.7" /></label>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/esri-leaflet"></script>
+
+    <script>
+        var map = L.map('map').setView([-2, 118], 5);
+
+        // Basemap OSM
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Layer PIPPIB dari MENLHK
+        var pippibLayer = L.esri.dynamicMapLayer({
+            url: 'https://geoportal.menlhk.go.id/server/rest/services/dbjvcbsyfs/PIPPIB_AR_250K/MapServer',
+            opacity: 0.7
+        }).addTo(map);
+
+        // Toggle Layer ON/OFF
+        document.getElementById('toggleLayer').addEventListener('change', function(e) {
+            if (e.target.checked) {
+                map.addLayer(pippibLayer);
+            } else {
+                map.removeLayer(pippibLayer);
+            }
+        });
+
+        // Opacity Slider
+        document.getElementById('opacitySlider').addEventListener('input', function(e) {
+            pippibLayer.setOpacity(parseFloat(e.target.value));
+        });
+    </script>
+</body>
+</html>

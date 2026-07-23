@@ -1,0 +1,44 @@
+from django.conf import settings
+from petani.models import Petani
+
+file_path = settings.BASE_DIR / "petani" / "id-petani-cukk-sekadau.txt"
+data_list = [line.strip() for line in file_path.read_text().splitlines() if line.strip()]
+qs = Petani.objects.filter(id_petani__in=data_list)
+
+sekadau_id = settings.WILAYAH_ADM_ID['kab_sekadau']
+kalbar_id = settings.WILAYAH_ADM_ID['prov_kalbar']
+
+for petani in qs:
+    if petani.kebun_set.count() > 0:
+        petani.kebun_set.update(kabupaten_id=sekadau_id, provinsi_id=kalbar_id)
+
+
+
+
+from django.conf import settings
+from petani.models import Petani
+
+file_path = settings.BASE_DIR / "petani" / "id-petani-cukk-sanggau.txt"
+data_list = [line.strip() for line in file_path.read_text().splitlines() if line.strip()]
+qs = Petani.objects.filter(id_petani__in=data_list)
+
+sanggau_id = settings.WILAYAH_ADM_ID['kab_sanggau']
+kalbar_id = settings.WILAYAH_ADM_ID['prov_kalbar']
+
+for petani in qs:
+    if petani.kebun_set.count() > 0:
+        petani.kebun_set.update(kabupaten_id=sanggau_id, provinsi_id=kalbar_id)
+
+
+
+from django.conf import settings
+from petani.models import Petani
+
+qs = Petani.objects.filter(id_petani__startswith="VBL-SINTANG")
+
+sintang_id = settings.WILAYAH_ADM_ID['kab_sintang']
+kalbar_id = settings.WILAYAH_ADM_ID['prov_kalbar']
+
+for petani in qs:
+    if petani.kebun_set.count() > 0:
+        petani.kebun_set.update(kabupaten_id=sintang_id, provinsi_id=kalbar_id)

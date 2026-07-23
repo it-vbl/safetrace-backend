@@ -1,0 +1,43 @@
+from django.urls import path
+from . import views
+
+app_name = 'gap'
+
+urlpatterns = [
+    path('produksi/list/', views.ProduksiListView.as_view(), name='produksi-list'),
+    path('produksi/download/', views.ProduksiDownloadView.as_view(), name='produksi-download'),
+    path('produksi/detail/<int:pk>/', views.ProduksiDetailView.as_view(), name='produksi-detail'),
+    path('produksi/detail/kebun/<int:pk>/', views.KebunGAPProduksiDetailView.as_view(), 
+         name='kebun-gap-produksi-detail'),
+    path('produksi/list/kebun/<int:kebun_id>/', views.ProduksiByKebunListView.as_view(), 
+         name='produksi-kebun-list'),
+    path('produksi/create/', views.ProduksiCreateView.as_view(), name='produksi-create'),
+    path('produksi/update/<int:pk>/', views.ProduksiUpdateView.as_view(), name='produksi-update'),
+    path('produksi/delete/<int:pk>/', views.ProduksiDeleteView.as_view(), name='produksi-delete'),
+    path('pestisida/list/', views.PenggunaanPestisidaListView.as_view(), name='pestisida-list'),
+    path('pestisida/download/', views.PenggunaanPestisidaDownloadView.as_view(), name='pestisida-download'),
+    path('pestisida/list/kebun/<int:kebun_id>/', views.PenggunaanPestisidaByKebunListView.as_view(), 
+         name='pestisida-list-kebun'),
+    path('pestisida/detail/<int:pk>/', views.PenggunaanPestisidaDetailView.as_view(), name='pestisida-detail'),
+    path('pestisida/detail/kebun/<int:pk>/', views.KebunGAPPestisidaDetailView.as_view(), 
+         name='pestisida-detail-kebun'),
+    path('pestisida/create/', views.PenggunaanPestisidaCreateView.as_view(), name='pestisida-create'),  
+    path('pestisida/update/<int:pk>/', views.PenggunaanPestisidaUpdateView.as_view(), name='pestisida-update'),
+    path('pestisida/delete/<int:pk>/', views.PenggunaanPestisidaDeleteView.as_view(), name='pestisida-delete'),
+    path('lb3/list/', views.LB3ListView.as_view(), name='lb3-list'),
+    path('lb3/download/', views.LB3DownloadView.as_view(), name='lb3-download'),
+    path('lb3/list/kebun/<int:kebun_id>/', views.LB3ByKebunListView.as_view(), name='lb3-list-kebun'),
+    path('lb3/detail/<int:pk>/', views.LB3DetailView.as_view(), name='lb3-detail'),
+    path('lb3/detail/kebun/<int:pk>/', views.KebunGAPLB3DetailView.as_view(), name='lb3-detail-kebun'),
+    path('lb3/create/', views.LB3CreateView.as_view(), name='lb3-create'),  
+    path('lb3/update/<int:pk>/', views.LB3UpdateView.as_view(), name='lb3-update'),
+    path('lb3/delete/<int:pk>/', views.LB3DeleteView.as_view(), name='lb3-delete'),
+    path('pupuk/list/', views.PenggunaanPupukListView.as_view(), name='pupuk-list'),
+    path('pupuk/download/', views.PenggunaanPupukDownloadView.as_view(), name='pupuk-download'),
+    path('pupuk/list/kebun/<int:kebun_id>/', views.PenggunaanPupukByKebunListView.as_view(), name='pupuk-list-kebun'),
+    path('pupuk/detail/<int:pk>/', views.PenggunaanPupukDetailView.as_view(), name='pupuk-detail'),
+    path('pupuk/detail/kebun/<int:pk>/', views.KebunGAPPupukDetailView.as_view(), name='pupuk-detail-kebun'),
+    path('pupuk/create/', views.PenggunaanPupukCreateView.as_view(), name='pupuk-create'),
+    path('pupuk/update/<int:pk>/', views.PenggunaanPupukUpdateView.as_view(), name='pupuk-update'),
+    path('pupuk/delete/<int:pk>/', views.PenggunaanPupukDeleteView.as_view(), name='pupuk-delete'),
+]
