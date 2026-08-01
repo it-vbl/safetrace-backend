@@ -10,6 +10,30 @@ Safetrace Backend is a Django-based API backend for supply chain traceability, w
 - Redis (for task queue)
 - Ubuntu 24.04
 
+## WHISP Integration
+Safetrace uses WHISP (OpenForis WHISP) for remote sensing analysis features related to land and forest monitoring. This integration is intended to obtain risk values from the analysis results produced by the WHISP system. These analyses are processed through a dedicated Redis queue named `whisp`.
+
+Before using features that depend on WHISP, make sure the following values are available in the `.env` file:
+```bash
+WHISP_API_URL=https://whisp.openforis.org/api
+WHISP_API_KEY=your-whisp-api-key
+```
+
+If the WHISP API key is not configured, features that rely on this service will not work properly. In local development, the backend can still run, but the parts dependent on WHISP will fail or return no analysis results.
+
+## GEE Service Account Credentials
+Several features in this project rely on Google Earth Engine (GEE) access through a Google service account. To make these features work correctly, the GEE service account must be configured with the appropriate credentials and access permissions.
+
+In the Django settings, the following configuration values are required:
+- `GEE_SERVICE_ACCOUNT_EMAIL`: the Google service account email address used by the project
+- `GEE_SERVICE_ACCOUNT_KEY_PATH`: the file path to the service account JSON key used for authentication
+
+These values are read in the project settings and must point to a valid service account credential file. The JSON key file should be placed in the project directory or another accessible location, and the path must be correctly set in the environment configuration.
+
+The service account used by this project expects read access to the GEE repository managed by this project. Without that access, management commands related to GEE data retrieval may fail or return incomplete results.
+
+If the GEE account needs access to the repository, please contact us so the account can be granted the required repository access and the management commands can run properly.
+
 ## System Dependencies (Ubuntu)
 
 **Ubuntu 24.04 (Python 3.12):**
