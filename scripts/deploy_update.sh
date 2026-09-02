@@ -5,7 +5,7 @@ BASE_DIR="/var/www/html"
 PROJECT_DIR="$BASE_DIR/safetrace"
 VENV_DIR="$PROJECT_DIR/venv"
 SERVICE_NAME="safetrace_gunicorn"
-SERVICE_RQ="rq_gunicorn"
+SERVICE_RQ="rq_safetrace"
 BRANCH="main"
 
 echo "Starting deployment process..."

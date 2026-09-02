@@ -74,15 +74,15 @@ sudo apt install -y redis-server
     pip install -r requirements.txt
     ```
 
-5. **Import Indonesia administrative base data**
-    Because this project uses `django-wilayah-indonesia`, import administrative area data first:
-    ```bash
-    ./manage.py import_base_csv
-    ```
-
-6. **Run database migrations**
+5. **Run database migrations**
     ```bash
     python manage.py migrate
+    ```
+
+6. **Import Indonesia administrative base data**
+    After the database tables have been created, import administrative area data used by `django-wilayah-indonesia`:
+    ```bash
+    python manage.py import_base_csv
     ```
 
 7. **Run the server**
