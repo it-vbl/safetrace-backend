@@ -26,7 +26,7 @@ class PetaniAdmin(admin.ModelAdmin):
 
 @admin.register(Lampiran)
 class LampiranAdmin(admin.ModelAdmin):
-    list_display = ('id', 'petani', 'file_ktp_check', 'file_kk_check', 'file_nib_check')
+    list_display = ('id', 'petani', 'file_ktp_check', 'file_kk_check', 'file_nib_check', 'file_foto_profile_check')
     search_fields = ('petani__nama', 'petani__id_perbaikan',)
     ordering = ('-created_at',)
 
@@ -44,6 +44,11 @@ class LampiranAdmin(admin.ModelAdmin):
         return bool(obj.file_nib) 
     file_nib_check.boolean = True
     file_nib_check.short_description = "File NIB"
+    
+    def file_foto_profile_check(self, obj):
+        return bool(obj.foto_profile)
+    file_foto_profile_check.boolean = True
+    file_foto_profile_check.short_description = "Foto Profile"
 
 
 @admin.register(Diklat)

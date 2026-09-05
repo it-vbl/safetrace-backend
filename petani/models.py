@@ -86,6 +86,8 @@ class Lampiran(ThumbnailsMixin, models.Model):
         validators=[MaxSizeFileValidator(10)]
     )
     thumb_nib = models.ImageField(upload_to='thumbs/nib/', null=True, blank=True)
+    foto_profile = models.ImageField(upload_to='foto-profile/', null=True, blank=True)
+    thumb_foto_profile = models.ImageField(upload_to='thumbs/foto-profile/', null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -97,7 +99,8 @@ class Lampiran(ThumbnailsMixin, models.Model):
         return {
             'file_ktp': 'thumb_ktp',
             'file_kk': 'thumb_kk', 
-            'file_nib': 'thumb_nib'
+            'file_nib': 'thumb_nib',
+            'foto_profile': 'thumb_foto_profile'
         }
 
 

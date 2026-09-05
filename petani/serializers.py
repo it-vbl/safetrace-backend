@@ -54,7 +54,7 @@ class PetaniDetailSerializer(serializers.ModelSerializer):
 class LampiranPetaniCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lampiran
-        fields = ['id', 'petani', 'file_ktp', 'file_kk', 'file_nib']
+        fields = ['id', 'petani', 'file_ktp', 'file_kk', 'file_nib', 'foto_profile']
         read_only_fields = ['id']
 
 
@@ -65,6 +65,8 @@ class LampiranPetaniSerializer(ConditionalSignedMediaMixin, serializers.ModelSer
     thumb_kk = serializers.SerializerMethodField()
     file_nib = serializers.SerializerMethodField()
     thumb_nib = serializers.SerializerMethodField()
+    foto_profile = serializers.SerializerMethodField()
+    thumb_foto_profile = serializers.SerializerMethodField()
     
     class Meta:
         model = Lampiran
@@ -106,6 +108,18 @@ class LampiranPetaniSerializer(ConditionalSignedMediaMixin, serializers.ModelSer
             return url
         return ''
 
+    def get_foto_profile(self, obj):
+        if obj.foto_profile:
+            url = f"{settings.MEDIA_HOST}{self.get_media_url(obj.foto_profile, expires_in=3600)}"
+            return url
+        return ''
+
+    def get_thumb_foto_profile(self, obj):
+        if obj.thumb_foto_profile:
+            url = f"{settings.MEDIA_HOST}{self.get_media_url(obj.thumb_foto_profile, expires_in=3600)}"
+            return url
+        return ''
+    
 
 class DiklatSerializer(serializers.ModelSerializer):
     id_petani = serializers.CharField(source='petani.id_petani', read_only=True)
